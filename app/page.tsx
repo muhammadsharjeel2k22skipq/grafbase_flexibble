@@ -20,8 +20,8 @@ type ProjectSearch = {
 
 
 type SearchParams = {
-  category?: string | null;
-  endcursor?: string | null;
+  category?: null | string;
+  endcursor?: null | string;
 }
 
 type Props = {
@@ -31,7 +31,7 @@ type Props = {
 
 export default async function Home({ searchParams: { category, endcursor } }: Props) { 
 
-  const data = await fetchAllProjects(category,endcursor) as ProjectSearch;  console.log(data,'data-sharjeel');
+  const data = await fetchAllProjects(category,endcursor) as ProjectSearch;
   const projectsToDisplay = data?.projectSearch?.edges || []; 
 
   if(projectsToDisplay.length === 0) {
