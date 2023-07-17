@@ -30,7 +30,7 @@ type Props = {
 
 export default async function Home({ searchParams: { category, endcursor } }: Props) { 
 
-  const data = await fetchAllProjects(category,endcursor) as ProjectSearch;
+  const data = await fetchAllProjects() as ProjectSearch;
   const projectsToDisplay = data?.projectSearch?.edges || []; 
 
   if(projectsToDisplay.length === 0) {
