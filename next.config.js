@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    images: {
+        domains: ['lh3.googleusercontent.com','res.cloudinary.com']
+    },
+    experimental: {
+        serverComponentsExternalPackages: ['cloudinary', 'graphql-request']
+    },
+    eslint: {
+        ignoreDuringBuilds: true,
+    }
+}
 
 module.exports = nextConfig
+

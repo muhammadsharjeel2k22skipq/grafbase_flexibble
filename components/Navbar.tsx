@@ -1,11 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { NavLinks } from '@/constants';
-import { AuthProviders } from '@/components';
+import { signOut } from 'next-auth/react';
 
-const Navbar = () => {
-  const session = null;
+import { NavLinks } from '@/constants';
+import { AuthProviders, Button, ProfileMenu } from '@/components';
+import { getCurrentUser } from '@/lib/session';
+
+const Navbar = async () => {
+  const session = await getCurrentUser();
 
   return (
     <nav className='flexBetween navbar'>
@@ -26,8 +29,8 @@ const Navbar = () => {
       <div className='flexCenter gap-4'>
         {session ? (
           <>
-            UserPhoto
-            <Link href={'/create-project'}>Share Work</Link>
+            <ProfileMenu session={session} />
+            <Link href={'/create-project'}><Button title='Share Work' /></Link>
           </>
         ) : (
           <AuthProviders />
