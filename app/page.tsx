@@ -20,7 +20,7 @@ type ProjectSearch = {
 
 
 
-export default async function Home({ searchParams }:{ searchParams: { category:string,endcursor:string } }) {
+export default async function Home({ searchParams }:{ searchParams: { category?:string,endcursor?:string } }) { 
 
   const { category,endcursor } = searchParams;
 
