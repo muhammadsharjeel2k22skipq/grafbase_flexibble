@@ -45,39 +45,36 @@ export const createProjectMutation = `
 }
 `
 
+
 export const projectsQuery = `
- query getProjects($category: String, $endcursor: String) {
-    projectSearch(
-        first: 8
-        after: $endcursor
-        filter: {category: {eq: $category}}
-      ) {
-        pageInfo {
-          hasPreviousPage
-          hasNextPage
-          startCursor
-          endCursor
-        }
-        edges {
-          node {
-            title
-            description
-            image
-            liveSiteUrl
-            githubUrl
-            category
+  query getProjects($category: String, $endcursor: String) {
+    projectSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          title
+          githubUrl
+          description
+          liveSiteUrl
+          id
+          image
+          category
+          createdBy {
             id
-            createdBy {
-              id
-              name
-              email
-              avatarUrl
-            }
+            email
+            name
+            avatarUrl
           }
         }
+      }
     }
- }
-`
+  }
+`;
 
 export const getProjectByIdQuery = `
   query GetProjectById($id: ID!) {
