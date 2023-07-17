@@ -18,14 +18,13 @@ type ProjectSearch = {
   }
 }
 
-
-type SearchParams = {
-  category?: null | string;
-  endcursor?: null | string;
+type SearchProps = {
+  category?: string;
+  endcursor?: string;
 }
 
 type Props = {
-  searchParams: SearchParams
+  searchParams: SearchProps
 }
 
 
@@ -64,4 +63,5 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
     </div>
   )
 }
+
 

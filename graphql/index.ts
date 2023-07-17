@@ -29,7 +29,7 @@ export const createUserMutation = `
     }
 `
 
-export const createProjectMuttion = `
+export const createProjectMutation = `
   mutation CreateProject($input: ProjectCreateInput!) {
     projectCreate(input: $input) {
         project {
