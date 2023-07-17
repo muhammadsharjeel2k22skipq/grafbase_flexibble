@@ -44,7 +44,7 @@ const ProjectForm = ({ type,session,projectId }:Props) => {
       }
     }
     catch(error) {
-      console.log('Error in creating project',error);
+      console.log('Error in creating project from ProjectFom.tsx',error);
     }
     finally {
       setIsSubmitting(false);
@@ -139,3 +139,4 @@ const ProjectForm = ({ type,session,projectId }:Props) => {
 }
 
 export default ProjectForm;
+

@@ -5,11 +5,11 @@ import { ProjectForm } from '@/common.types';
 
 
 const isProduction = process.env.NODE_ENV === 'production';
-const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT || '' : 'http://127.0.0.1:4000/graphql';
-const apiKey = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY || '' : 'letmein';
-const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL || '' : 'http://localhost:3000';
+const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT : 'http://127.0.0.1:4000/graphql';
+const apiKey = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY : 'letmein';
+const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL : 'http://localhost:3000';
 
-const client = new GraphQLClient(apiUrl);
+const client = new GraphQLClient(apiUrl as string,{ errorPolicy:'ignore' });
 
 const makeGraphQLRequest = async (query:string, variables:{}) => {
 
@@ -24,7 +24,7 @@ const makeGraphQLRequest = async (query:string, variables:{}) => {
 };
 
 export const getUser = (email: string) => {
-    client.setHeader('x-api-key',apiKey);
+    client.setHeader('x-api-key',apiKey as string);
     return makeGraphQLRequest(getUserQuery, {email});
 };
 
@@ -36,7 +36,7 @@ export const createUser = (name:string, email:string, avatarUrl:string) => {
             avatarUrl
         },
     };
-    client.setHeader('x-api-key',apiKey);
+    client.setHeader('x-api-key',apiKey as string);
     return makeGraphQLRequest(createUserMutation, variables);
 };
 
@@ -75,7 +75,9 @@ export const createProject = async (form:ProjectForm, createrId:string, token:st
 
 export const fetchToken = async () => {
     try {
-        const response = await fetch(`${serverUrl}/api/auth/token`,{});
+        const response = await fetch(`${serverUrl}/api/auth/token`,{
+            method: 'GET'
+        });
         return response.json();
     }
     catch(error:any) {
@@ -85,20 +87,20 @@ export const fetchToken = async () => {
 
 
 export const fetchAllProjects = async (category?:string, endcursor?:string) => {
-    client.setHeader('x-api-key',apiKey);
+    client.setHeader('x-api-key',apiKey as string);
     
     return makeGraphQLRequest(projectsQuery,{category,endcursor});
 };
 
 
 export const getProjectDetails = async (id: string) => {
-    client.setHeader('x-api-key',apiKey);
+    client.setHeader('x-api-key',apiKey as string);
     
     return makeGraphQLRequest(getProjectByIdQuery,{id});
 };
 
 export const getUserProjects = async (id:string, last?:number) => {
-    client.setHeader('x-api-key',apiKey);
+    client.setHeader('x-api-key',apiKey as string);
 
     return makeGraphQLRequest(getProjectsOfUserQuery,{ id,last });
 };

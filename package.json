@@ -18,6 +18,7 @@
     "autoprefixer": "10.4.14",
     "cloudinary": "^1.37.3",
     "cross-fetch": "^4.0.0",
+    "graphql": "^16.7.1",
     "graphql-request": "^6.1.0",
     "jose": "^4.14.4",
     "jsonwebtoken": "^9.0.1",
@@ -30,6 +31,6 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@grafbase/sdk": "^0.0.25"
+    "@grafbase/sdk": "^0.2.1"
   }
 }
