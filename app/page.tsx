@@ -24,7 +24,7 @@ export default async function Home({ searchParams }:{ searchParams: { category:s
 
   const { category,endcursor } = searchParams;
 
-  const data = await fetchAllProjects(category,endcursor) as ProjectSearch;
+  const data = await fetchAllProjects(category,endcursor) as ProjectSearch; 
   const projectsToDisplay = data?.projectSearch?.edges || []; 
 
   if(projectsToDisplay.length === 0) {
@@ -53,7 +53,7 @@ export default async function Home({ searchParams }:{ searchParams: { category:s
         endCursor={data?.projectSearch?.pageInfo?.endCursor}
         hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
         hasNextPage={data?.projectSearch?.pageInfo?.hasNextPage} 
-      />
+      /> 
     </div>
   )
 }
