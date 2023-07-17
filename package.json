@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@headlessui/react": "^1.7.15",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "20.4.0",
@@ -16,6 +17,7 @@
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
     "cloudinary": "^1.37.3",
+    "cross-fetch": "^4.0.0",
     "graphql-request": "^6.1.0",
     "jose": "^4.14.4",
     "jsonwebtoken": "^9.0.1",
@@ -31,4 +33,3 @@
     "@grafbase/sdk": "^0.0.25"
   }
 }
-
