@@ -46,7 +46,7 @@ export const createProjectMuttion = `
 `
 
 export const projectsQuery = `
- query GetProjects($category: String, $endcursor: String) {
+ query getProjects($category: String, $endcursor: String) {
     projectSearch(
         first: 8
         after: $endcursor
