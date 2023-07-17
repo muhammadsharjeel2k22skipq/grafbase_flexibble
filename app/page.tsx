@@ -19,10 +19,17 @@ type ProjectSearch = {
 }
 
 
+type SearchParams = {
+  category?: string | null;
+  endcursor?: string | null;
+}
 
-export default async function Home({ searchParams }:{ searchParams: { category?:string,endcursor?:string } }) { 
+type Props = {
+  searchParams: SearchParams
+}
 
-  const { category,endcursor } = searchParams;
+
+export default async function Home({ searchParams: { category, endcursor } }: Props) { 
 
   const data = await fetchAllProjects(category,endcursor) as ProjectSearch; 
   const projectsToDisplay = data?.projectSearch?.edges || []; 
