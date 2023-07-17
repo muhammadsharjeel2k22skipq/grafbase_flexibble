@@ -1,6 +1,6 @@
 import { ProjectInterface } from "@/common.types";
 import { Categories, LoadMore, ProjectCard } from "@/components";
-import { fetchAllProjects } from "@/lib/actions";
+import { fetchAllProjects } from "@/lib/actions"; 
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
