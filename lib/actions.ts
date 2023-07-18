@@ -10,9 +10,9 @@ const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT as s
 const apiKey = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string : 'letmein';
 const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL as string : 'http://localhost:3000';
 
-const client = new GraphQLClient(apiUrl,{
+const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT as string,{
     headers: {
-        'x-api-key': apiKey
+        'x-api-key': process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string
     }
 });
 
@@ -29,7 +29,7 @@ const makeGraphQLRequest = async (query:string, variables:{}) => {
 };
 
 export const getUser = (email: string) => {
-    client.setHeader("x-api-key", apiKey);
+    // client.setHeader("x-api-key", apiKey);
     return makeGraphQLRequest(getUserQuery, {email});
 };
 
@@ -41,7 +41,7 @@ export const createUser = (name:string, email:string, avatarUrl:string) => {
             avatarUrl
         },
     };
-    client.setHeader("x-api-key", apiKey);
+    // client.setHeader("x-api-key", apiKey);
     return makeGraphQLRequest(createUserMutation, variables);
 };
 
@@ -93,21 +93,22 @@ export const fetchToken = async () => {
 };
 
 
-export const fetchAllProjects = async (category?: string, endcursor?: string) => {
-    client.setHeader("x-api-key", apiKey);
+export const fetchAllProjects = async (newCategory?: string, endcursor?: string) => {
+    // client.setHeader("x-api-key", process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string);
+    let category = !newCategory ? newCategory : "Backend";
     
-    return makeGraphQLRequest(projectsQuery,{});
+    return makeGraphQLRequest(projectsQuery,{category,endcursor});
 };
 
 
 export const getProjectDetails = async (id: string) => {
-    client.setHeader("x-api-key", apiKey);
+    // client.setHeader("x-api-key", apiKey);
     
     return makeGraphQLRequest(getProjectByIdQuery,{id});
 };
 
 export const getUserProjects = async (id:string, last?:number) => {
-    client.setHeader("x-api-key", apiKey);
+    // client.setHeader("x-api-key", apiKey);
 
     return makeGraphQLRequest(getProjectsOfUserQuery,{ id,last });
 };

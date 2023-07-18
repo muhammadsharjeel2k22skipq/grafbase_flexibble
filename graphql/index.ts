@@ -46,29 +46,29 @@ export const createProjectMutation = `
 `
 import { gql } from "graphql-request";
 
-export const projectsQuery =`
-  query ProjectSearch {
-    projectSearch(first: 10) {
+export const projectsQuery = `
+  query getProjects($category:String = "Backend", $endCursor:String ) {
+    projectSearch(first: 8, after: $endCursor, filter: {category: {eq: $category}}) {
       pageInfo {
-        hasPreviousPage
         hasNextPage
+        hasPreviousPage
         startCursor
         endCursor
       }
       edges {
         node {
           title
-          description
-          image
-          liveSiteUrl
           githubUrl
-          category
+          description
+          liveSiteUrl
           id
+          image
+          category
           createdBy {
-            name
-            email
-            avatarUrl
             id
+            email
+            name
+            avatarUrl
           }
         }
       }
