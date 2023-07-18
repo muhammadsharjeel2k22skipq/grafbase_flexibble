@@ -33,7 +33,7 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
   const data = await fetchAllProjects(category,endcursor) as ProjectSearch;
   const projectsToDisplay = data?.projectSearch?.edges || []; 
 
-  if(projectsToDisplay.length === 0) {
+  if(projectsToDisplay.length === 0 || !data || !projectsToDisplay) {
     return (
       <section className="flexStart flex-col paddings">
         <Categories />
