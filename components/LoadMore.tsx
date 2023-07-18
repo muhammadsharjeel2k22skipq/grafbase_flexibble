@@ -10,7 +10,7 @@ type Props = {
     hasNextPage: boolean;
 }
 
-const LoadMore = ({ startCursor,endCursor,hasNextPage,hasPreviousPage }:Props) => {
+const LoadMore = ({ startCursor,endCursor,hasPreviousPage,hasNextPage }:Props) => {
     const router = useRouter();
 
     const handleNavigation = (direction:string) => {
@@ -43,3 +43,4 @@ const LoadMore = ({ startCursor,endCursor,hasNextPage,hasPreviousPage }:Props) =
 }
 
 export default LoadMore;
+

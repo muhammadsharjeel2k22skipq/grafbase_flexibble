@@ -96,7 +96,7 @@ export const fetchToken = async () => {
 export const fetchAllProjects = async (category?: string, endcursor?: string) => {
     // client.setHeader("x-api-key", process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string);
     if(!category || category === null) {
-        return makeGraphQLRequest(allProjectsQuery,{endcursor});
+        return makeGraphQLRequest(allProjectsQuery,{ endcursor });
     }
     return makeGraphQLRequest(projectsQuery,{category,endcursor});
 };

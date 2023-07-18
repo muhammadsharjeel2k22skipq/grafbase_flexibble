@@ -47,8 +47,8 @@ export const createProjectMutation = `
 import { gql } from "graphql-request";
 
 export const projectsQuery = `
-  query getProjects($category:String = "Backend", $endCursor:String ) {
-    projectSearch(first: 8, after: $endCursor, filter: {category: {eq: $category}}) {
+  query getProjects($category:String, $endcursor:String ) {
+    projectSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -162,8 +162,8 @@ export const updateProjectMuttion = `
 `
 
 export const allProjectsQuery = `
-query ProjectCollection($endCursor: String) {
-  projectCollection(first: 8, after: $endCursor) {
+query ProjectCollection($endcursor: String) {
+  projectCollection(first: 8, after: $endcursor) {
     pageInfo {
       hasPreviousPage
       hasNextPage
@@ -190,3 +190,5 @@ query ProjectCollection($endCursor: String) {
   }
 }
 `
+
+
