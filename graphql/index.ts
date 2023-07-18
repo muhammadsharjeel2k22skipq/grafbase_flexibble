@@ -44,9 +44,9 @@ export const createProjectMutation = `
     }
 }
 `
+import { gql } from "graphql-request";
 
-
-export const projectsQuery = `
+export const projectsQuery = gql `
   query getProjects($category: String, $endcursor: String) {
     projectSearch(first: 8, after: $endcursor, filter: {category: {eq: $category }}) {
       pageInfo {

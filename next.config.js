@@ -4,7 +4,7 @@ const nextConfig = {
         domains: ['lh3.googleusercontent.com','res.cloudinary.com']
     },
     experimental: {
-        serverComponentsExternalPackages: ['cloudinary', 'graphql-request']
+        appDir: true
     },
     eslint: {
         ignoreDuringBuilds: true,
@@ -13,3 +13,4 @@ const nextConfig = {
 
 module.exports = nextConfig
 
+// serverComponentsExternalPackages: ['cloudinary', 'graphql-request']

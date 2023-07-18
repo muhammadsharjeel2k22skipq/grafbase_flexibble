@@ -1,15 +1,20 @@
 import { GraphQLClient } from 'graphql-request';
+export { gql } from 'graphql-request';
 
 import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMuttion } from '@/graphql';
 import { ProjectForm } from '@/common.types';
 
 
 const isProduction = process.env.NODE_ENV === 'production';
-const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT || "" : 'http://127.0.0.1:4000/graphql';
-const apiKey = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY || "" : 'letmein';
-const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL || "" : 'http://localhost:3000';
+const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_ENDPOINT as string : 'http://127.0.0.1:4000/graphql';
+const apiKey = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string : 'letmein';
+const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL as string : 'http://localhost:3000';
 
-const client = new GraphQLClient(apiUrl);
+const client = new GraphQLClient(apiUrl,{
+    headers: {
+        'x-api-key': apiKey
+    }
+});
 
 const makeGraphQLRequest = async (query:string, variables:{}) => {
 
