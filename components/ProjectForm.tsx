@@ -35,7 +35,7 @@ const ProjectForm = ({ type,session,projectId }:Props) => {
     try {
       if(type === 'create') {
         //Create Project
-        await createProject(form,session?.user?.id,token);
+        await createProject(form, session.user.id, token);
         router.push('/');
       }
       if(type === 'edit') {
