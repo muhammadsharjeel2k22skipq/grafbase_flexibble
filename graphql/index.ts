@@ -161,3 +161,32 @@ export const updateProjectMuttion = `
   }
 `
 
+export const allProjectsQuery = `
+query ProjectCollection($last: Int = 10) {
+  projectCollection(last: $last) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        id
+        title
+        description
+        image
+        liveSiteUrl
+        githubUrl
+        category
+        createdBy {
+          name
+          email
+          avatarUrl
+          id
+        }
+      }
+    }
+  }
+}
+`

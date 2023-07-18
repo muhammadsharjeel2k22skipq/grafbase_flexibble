@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 export { gql } from 'graphql-request';
 
-import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMuttion } from '@/graphql';
+import { allProjectsQuery, createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMuttion } from '@/graphql';
 import { ProjectForm } from '@/common.types';
 
 
@@ -93,9 +93,11 @@ export const fetchToken = async () => {
 };
 
 
-export const fetchAllProjects = async (category?: string, endcursor?: string) => {
+export const fetchAllProjects = async (category?: string, endcursor?: string, last?:number) => {
     // client.setHeader("x-api-key", process.env.NEXT_PUBLIC_GRAFBASE_API_KEY as string);
-    
+    if(!category || category === null) {
+        return makeGraphQLRequest(allProjectsQuery,{last});
+    }
     return makeGraphQLRequest(projectsQuery,{category,endcursor});
 };
 

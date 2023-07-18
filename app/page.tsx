@@ -18,6 +18,18 @@ type ProjectSearch = {
   }
 }
 
+type AllProjectsSearch = {
+  projectCollection: {
+    edges: { node: ProjectInterface }[],
+    pageInfo: {
+      hasPreviousPage: boolean,
+      hasNextPage: boolean,
+      startCursor: string,
+      endCursor: string
+    },
+  }
+}
+
 type SearchProps = {
   category?: string;
   endcursor?: string;
@@ -29,9 +41,18 @@ type Props = {
 
 
 export default async function Home({ searchParams: { category, endcursor } }: Props) { 
+  let data:any;
+  let projectsToDisplay:any = [];
 
-  const data = await fetchAllProjects(category,endcursor) as ProjectSearch; console.log(data)
-  const projectsToDisplay = data?.projectSearch?.edges || []; 
+  if(!category) {
+    data = await fetchAllProjects(category,endcursor,10) as AllProjectsSearch;
+    projectsToDisplay = data?.projectCollection?.edges || []; console.log(data,'data-sharjeel')
+  }
+  else {
+    data = await fetchAllProjects(category,endcursor) as ProjectSearch;
+    projectsToDisplay = data?.projectSearch?.edges || []; console.log(data,'data-sharjeel')
+  }
+
 
   if(projectsToDisplay.length === 0) {
     return (
@@ -55,10 +76,10 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
       </section>
 
       <LoadMore
-        startCursor={data?.projectSearch?.pageInfo?.startCursor}
-        endCursor={data?.projectSearch?.pageInfo?.endCursor}
-        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
-        hasNextPage={data?.projectSearch?.pageInfo?.hasNextPage} 
+        startCursor={!category ? data?.projectCollection?.pageInfo?.startCursor : data?.projectSearch?.pageInfo?.startCursor}
+        endCursor={!category ? '' : data?.projectCollection?.pageInfo?.endCursor}
+        hasPreviousPage={!category ? '' : data?.projectCollection?.pageInfo?.hasPreviousPage}
+        hasNextPage={!category ? '' : data?.projectCollection?.pageInfo?.hasNextPage} 
       /> 
     </div>
   )
