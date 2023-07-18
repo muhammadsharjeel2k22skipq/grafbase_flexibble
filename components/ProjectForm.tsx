@@ -48,6 +48,7 @@ const ProjectForm = ({ type,session,projectId }:Props) => {
     }
     finally {
       setIsSubmitting(false);
+      router.refresh();
     }
   };
 
