@@ -162,8 +162,8 @@ export const updateProjectMuttion = `
 `
 
 export const allProjectsQuery = `
-query ProjectCollection($last: Int = 8) {
-  projectCollection(last: $last) {
+query ProjectCollection($endCursor: String) {
+  projectCollection(first: 8, after: $endCursor) {
     pageInfo {
       hasPreviousPage
       hasNextPage

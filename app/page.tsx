@@ -45,7 +45,7 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
   let projectsToDisplay:any = [];
 
   if(!category) {
-    data = await fetchAllProjects(category,endcursor,8) as AllProjectsSearch;
+    data = await fetchAllProjects(category,endcursor) as AllProjectsSearch;
     projectsToDisplay = data?.projectCollection?.edges || []; console.log(data,'data-sharjeel')
   }
   else {
@@ -76,10 +76,10 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
       </section>
 
       <LoadMore
-        startCursor={ data?.projectCollection?.pageInfo?.startCursor }
-        endCursor={ data?.projectCollection?.pageInfo?.endCursor }
-        hasPreviousPage={ data?.projectCollection?.pageInfo?.hasPreviousPage }
-        hasNextPage={ data?.projectCollection?.pageInfo?.hasNextPage } 
+        startCursor={!category ? data?.projectCollection?.pageInfo?.startCursor : data?.projectSearch?.pageInfo?.startCursor}
+        endCursor={!category ? data?.projectCollection?.pageInfo?.endCursor : data?.projectSearch?.pageInfo?.endCursor}
+        hasPreviousPage={!category ? data?.projectCollection?.pageInfo?.hasPreviousPage : data?.projectSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={!category ? data?.projectCollection?.pageInfo?.hasNextPage : data?.projectSearch?.pageInfo?.hasNextPage} 
       /> 
     </div>
   )
