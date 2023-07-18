@@ -76,10 +76,10 @@ export default async function Home({ searchParams: { category, endcursor } }: Pr
       </section>
 
       <LoadMore
-        startCursor={!category ? data?.projectCollection?.pageInfo?.startCursor : data?.projectSearch?.pageInfo?.startCursor}
-        endCursor={!category ? data?.projectCollection?.pageInfo?.endCursor : data?.projectSearch?.pageInfo?.endCursor}
-        hasPreviousPage={!category ? data?.projectCollection?.pageInfo?.hasPreviousPage : data?.projectSearch?.pageInfo?.hasPreviousPage}
-        hasNextPage={!category ? data?.projectCollection?.pageInfo?.hasNextPage : data?.projectSearch?.pageInfo?.hasNextPage} 
+        startCursor={ data?.projectCollection?.pageInfo?.startCursor }
+        endCursor={ data?.projectCollection?.pageInfo?.endCursor }
+        hasPreviousPage={ data?.projectCollection?.pageInfo?.hasPreviousPage }
+        hasNextPage={ data?.projectCollection?.pageInfo?.hasNextPage } 
       /> 
     </div>
   )
