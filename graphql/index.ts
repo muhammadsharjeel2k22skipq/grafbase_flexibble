@@ -162,7 +162,7 @@ export const updateProjectMuttion = `
 `
 
 export const allProjectsQuery = `
-query ProjectCollection($last: Int = 10) {
+query ProjectCollection($last: Int = 8) {
   projectCollection(last: $last) {
     pageInfo {
       hasPreviousPage
